@@ -1,6 +1,7 @@
 import React from 'react'
 import '../compheader.css'
 import { Button, Modal, Row, Table } from 'react-bootstrap'
+import axios from 'axios';
 
 export default class ViewProperties extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ export default class ViewProperties extends React.Component {
     this.state = {
       to: [],
       isQuickPreview: false,
-      desc:""
+      desc: ""
     }
   }
   componentDidMount = () => {
@@ -18,26 +19,35 @@ export default class ViewProperties extends React.Component {
   }
 
   handleShowMoreLink = (desc) => {
-    this.setState({isQuickPreview:true,desc:desc})
+    this.setState({ isQuickPreview: true, desc: desc })
+  }
+  onClickDelete = (o) => {
+    axios.delete(process.env.REACT_APP_BASE_URL + '/property/' + o.id).then(res => {
+      let data = this.state.to.filter(t => t.id !== o.id)
+      this.setState({ to: data })
+      alert("Deleted")
+    }).catch(e => {
+      alert("Not Deleted")
+    })
   }
   render() {
     const to1 = this.state.to.length
     return (
       <div>
-         <Modal size="lg" show={this.state.isQuickPreview} onHide={() => this.setState({isQuickPreview:false})}>
-            <Modal.Header closeButton>
+        <Modal size="lg" show={this.state.isQuickPreview} onHide={() => this.setState({ isQuickPreview: false })}>
+          <Modal.Header closeButton>
             {/* <Modal.Title>Modal heading</Modal.Title> */}
-            </Modal.Header>
-            <Modal.Body>
+          </Modal.Header>
+          <Modal.Body>
             <Row>
-            <div className="mt-1">{this.state.desc}</div>
+              <div className="mt-1">{this.state.desc}</div>
             </Row>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={() => this.setState({isQuickPreview:false})}>
-                    Close
-                </Button>
-            </Modal.Footer>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => this.setState({ isQuickPreview: false })}>
+              Close
+            </Button>
+          </Modal.Footer>
         </Modal>
         {to1 != 0 ? (
           <div className="vhome">
@@ -56,6 +66,7 @@ export default class ViewProperties extends React.Component {
                       <th>Area</th>
                       <th>City</th>
                       <th>Availability</th>
+                      <th>Remove</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -68,13 +79,16 @@ export default class ViewProperties extends React.Component {
                           </td>
                           <td>{o.owner?.name}</td>
                           <td>{o.name}</td>
-                          <td>{o.description.substring(0,100)}... <a style={{color:"blue", cursor:"pointer"}} onClick={(e)=>this.handleShowMoreLink(o.description)}>Show More</a></td>
+                          <td>{o.description.substring(0, 100)}... <a style={{ color: "blue", cursor: "pointer" }} onClick={(e) => this.handleShowMoreLink(o.description)}>Show More</a></td>
                           <td>₹{o.rent}</td>
                           <td>₹{o.deposite}</td>
                           <td>{o.area} sqft</td>
                           <td>{o.city}</td>
                           <td>{o.available ? "Available" : "Not Available"}</td>
-                          
+                          <td>
+                            <Button variant="danger" onClick={() => this.onClickDelete(o)}>DELETE</Button>
+                          </td>
+
                         </tr>
                       )
                     })}

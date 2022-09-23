@@ -3,6 +3,7 @@ import '../OwnerHome.css';
 import { Button, Modal, Row, Table, Form } from 'react-bootstrap';
 import Loader from './Loader';
 import { Rating } from 'react-simple-star-rating'
+import axios from 'axios';
 export default class OwnerHome extends React.Component {
     constructor(props) {
         super(props);
@@ -13,7 +14,15 @@ export default class OwnerHome extends React.Component {
             desc: ""
         }
     }
-
+    onClickDelete = (o) => {
+        axios.delete(process.env.REACT_APP_BASE_URL + '/property/' + o.id).then(res => {
+            let data = this.state.to.filter(t => t.id !== o.id)
+            this.setState({ to: data })
+            alert("Deleted")
+        }).catch(e => {
+            alert("Not Deleted")
+        })
+    }
     componentDidMount = () => {
         this.setState({ loading: true })
         let sign = JSON.parse(localStorage.getItem('data1'));
@@ -88,6 +97,7 @@ export default class OwnerHome extends React.Component {
                                             <th>Categories</th>
                                             <th>Intrested User</th>
                                             <th>Availability</th>
+                                            <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -122,6 +132,9 @@ export default class OwnerHome extends React.Component {
                                                                     onChange={(e) => this.onChangeAvailable(e, o)}
                                                                     className="mt-2"
                                                                 />
+                                                            </td>
+                                                            <td>
+                                                                <Button variant="danger" onClick={() => this.onClickDelete(o)}>DELETE</Button>
                                                             </td>
                                                         </tr>
                                                     );

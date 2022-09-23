@@ -6,6 +6,7 @@ import { Container, Row } from 'react-bootstrap'
 import Loader from './Loader'
 import Footer from './Footer.js'
 import axios from 'axios';
+import Slider from './Slider';
 export default class Home extends React.Component {
   constructor(props) {
     super(props)
@@ -27,7 +28,7 @@ export default class Home extends React.Component {
     if (JSON.parse(localStorage.getItem('data1')) !== null) {
       await axios.post(process.env.REACT_APP_BASE_URL + '/property/show_interest?user_id=' + JSON.parse(localStorage.getItem('data1'))?.id + '&property_id=' + id)
         .then((resp) => {
-          resp.json()
+          console.log(resp)
           let temp = [...this.state.to]
           temp.filter(i => i.id === id)[0].intrestedUser = [...temp.filter(i => i.id === id)[0].intrestedUser, { id: Number(JSON.parse(localStorage.getItem('data1'))?.id) }]
           console.log(temp)
@@ -49,7 +50,6 @@ export default class Home extends React.Component {
         let temp = [...this.state.to]
         temp.filter(i => i.id === id)[0].intrestedUser = temp.filter(i => i.id === id)[0].intrestedUser.filter(j => j.id !== JSON.parse(localStorage.getItem('data1'))?.id)
         this.setState({ to: temp })
-        resp.json()
       })
       .then((data) => {
 
@@ -63,6 +63,7 @@ export default class Home extends React.Component {
       <Loader />
     ) : this.state.isError ? <h1>Something went wrong :(<br></br>Check your internet connection</h1> : (
       <div>
+        <Slider />
         <div className="home">
           <Container className="mt-3">
             <Row className="g-4 mt-2">
