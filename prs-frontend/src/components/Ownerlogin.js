@@ -162,7 +162,7 @@ class OwnerLogin extends React.Component {
                     </form> */}
                     <Form.Group className="mb-2">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type='text' name="vemail" value={this.state.vemail} onChange={this.handleChange} onChange={this.handleChange} />
+                        <Form.Control type='text' name="vemail" value={this.state.vemail} onChange={this.handleChange} />
                         {(!this.state.inputElements.email.valid && this.state.inputElements.email.touched) && <div style={{ color: "red" }}> {this.state.inputElements.email.invalidText}</div>}
                     </Form.Group>
                     <Form.Group className="mb-2">

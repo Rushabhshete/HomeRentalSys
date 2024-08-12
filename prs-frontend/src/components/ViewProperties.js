@@ -49,7 +49,7 @@ export default class ViewProperties extends React.Component {
             </Button>
           </Modal.Footer>
         </Modal>
-        {to1 != 0 ? (
+        {to1 !== 0 ? (
           <div className="vhome">
             <div className="vhome_container">
               <div className="vhome_row">

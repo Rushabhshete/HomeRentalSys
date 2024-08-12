@@ -94,7 +94,7 @@ export default class OwnerRegister extends React.Component{
                         if(nm==="repassword")
                         {
                             val=input.value;
-                            if(this.state.password!=val)
+                            if(this.state.password!==val)
                             {
                                 error.repassworderr="Password Not Equal";
                             }

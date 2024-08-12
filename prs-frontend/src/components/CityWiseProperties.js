@@ -19,7 +19,7 @@ function CityWiseProperties(props) {
             .then(resp => resp.json())
             .then(data => {
                 console.log(data)
-                if (data.length != 0) {
+                if (data.length !== 0) {
                     console.log(JSON.stringify(data));
                     setLoading(false)
                     setSr(data)
@@ -90,7 +90,7 @@ function CityWiseProperties(props) {
                                                     available={o.available}
                                                     categories={o.categories}
                                                     city={o.city}
-                                                    deposite={o.deposite}
+                                                    //deposite={o.deposite}
                                                     owner={o.owner}
                                                     onClickInterested={(id) => onClickInterested(id)}
                                                     onClickNotInterested={(id) => onClickNotInterested(id)}
@@ -99,7 +99,7 @@ function CityWiseProperties(props) {
                                         );
                                     }
                                 )
-                            }
+                            }``
                             <p> {searcherror} </p>
                         </Row>
                     </Container>

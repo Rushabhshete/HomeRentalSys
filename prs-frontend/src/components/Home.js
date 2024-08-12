@@ -84,7 +84,7 @@ export default class Home extends React.Component {
                       available={o.available}
                       categories={o.categories}
                       city={o.city}
-                      deposite={o.deposite}
+                     // deposite={o.deposite}
                       owner={o.owner}
                       onClickInterested={(id) => this.onClickInterested(id)}
                       onClickNotInterested={(id) => this.onClickNotInterested(id)}

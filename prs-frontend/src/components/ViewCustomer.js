@@ -18,7 +18,7 @@ export default class ViewCustomer extends React.Component {
     render() {
         const to1 = this.state.to.length;
         return (
-            <div>{to1 != 0 ?
+            <div>{to1 !== 0 ?
                 <div className='vhome'>
                     <div className='vhome_container'>
                         <div className=''>

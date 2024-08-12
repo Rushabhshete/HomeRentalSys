@@ -22,7 +22,7 @@ export default class ViewOwners extends React.Component{
         const to1= this.state.to.length;
     return (
         <div>
-           {to1!=0
+           {to1!==0
            ? <div className='vhome'>
                 <div className='vhome_container'>
                          <div className='vhome_row'>

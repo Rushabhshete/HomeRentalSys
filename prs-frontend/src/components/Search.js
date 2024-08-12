@@ -26,7 +26,7 @@ const Search = (props) => {
     )
       .then((resp) => resp.json())
       .then((data) => {
-        if (data.length != 0) {
+        if (data.length !== 0) {
           console.log(JSON.stringify(data))
           setsr(data)
           setloading(false)
@@ -96,7 +96,7 @@ const Search = (props) => {
                     available={o.available}
                     categories={o.categories}
                     city={o.city}
-                    deposite={o.deposite}
+                    //deposite={o.deposite}
                     owner={o.owner}
                     onClickInterested={(id) => onClickInterested(id)}
                     onClickNotInterested={(id) => onClickNotInterested(id)}

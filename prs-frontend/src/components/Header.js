@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import '../Header.css'
-import SearchIcon from '@material-ui/icons/Search'
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet'
+// import SearchIcon from '@material-ui/icons/Search'
+// import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
+// import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet'
 import PersonIcon from '@mui/icons-material/Person';
 import { Link, NavLink } from 'react-router-dom'
 import {
